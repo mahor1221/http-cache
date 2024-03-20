@@ -6,7 +6,7 @@ use http_cache_semantics::CachePolicy;
 use serde::{Deserialize, Serialize};
 
 /// Implements [`CacheManager`] with [`cacache`](https://github.com/zkat/cacache-rs) as the backend.
-#[cfg_attr(docsrs, doc(cfg(feature = "manager-cacache")))]
+#[cfg(feature = "manager-cacache")]
 #[derive(Debug, Clone)]
 pub struct CACacheManager {
     /// Directory where the cache will be stored.
@@ -27,6 +27,11 @@ struct Store {
 
 #[allow(dead_code)]
 impl CACacheManager {
+    /// Creates a new manager from cache storage path.
+    pub fn new(path: PathBuf) -> Self {
+        Self { path }
+    }
+
     /// Clears out the entire cache.
     pub async fn clear(&self) -> Result<()> {
         cacache::clear(&self.path).await?;

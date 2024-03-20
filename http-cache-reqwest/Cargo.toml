@@ -1,6 +1,6 @@
 [package]
 name = "http-cache-reqwest"
-version = "0.13.0"
+version = "0.13.1"
 description = "http-cache middleware implementation for reqwest"
 authors = ["Christian Haynes <06chaynes@gmail.com>", "Kat Marchán <kzm@zkat.tech>"]
 repository = "https://github.com/06chaynes/http-cache"
@@ -35,8 +35,9 @@ tokio = { version = "1.29.1", features = ["macros", "rt-multi-thread"] }
 wiremock = "0.5.19"
 
 [features]
-default = ["manager-cacache"]
-manager-cacache = ["http-cache/manager-cacache", "http-cache/cacache-tokio"]
+default = ["manager-cacache-async-std"]
+manager-cacache-tokio = ["http-cache/manager-cacache", "http-cache/cacache-tokio"]
+manager-cacache-async-std = ["http-cache/manager-cacache", "http-cache/cacache-async-std"]
 manager-moka = ["http-cache/manager-moka"]
 
 [package.metadata.docs.rs]

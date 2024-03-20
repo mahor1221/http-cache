@@ -51,8 +51,17 @@ pub use http_cache::{
     HttpResponse,
 };
 
-#[cfg(feature = "manager-cacache")]
-#[cfg_attr(docsrs, doc(cfg(feature = "manager-cacache")))]
+#[cfg(any(
+    feature = "manager-cacache-async-std",
+    feature = "manager-cacache-tokio"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "manager-cacache-async-std",
+        feature = "manager-cacache-tokio"
+    )))
+)]
 pub use http_cache::CACacheManager;
 
 #[cfg(feature = "manager-moka")]
